@@ -1,0 +1,20 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+                                   "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+ <class catalog="drms" name="com.riglesoft.users.model.BatteryReport" table="battery_report">
+  <id name="mkrDate" type="string">
+   <column length="45" name="mkr_dt"/>
+   <generator class="assigned"/>
+  </id>
+  <property generated="never" lazy="false" name="totalCapacity" type="double">
+   <column length="60" name="total_Capacity" not-null="true"/>
+  </property>
+  <property generated="never" lazy="false" name="totalCharge" type="double">
+   <column name="total_charge" not-null="true"/>
+  </property>
+  <property generated="never" lazy="false" name="totalDischarge" type="double">
+   <column name="total_discharge" not-null="true"/>
+  </property>
+ </class>
+</hibernate-mapping>

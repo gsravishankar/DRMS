@@ -1,0 +1,155 @@
+<%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="UTF-8">
+        <title>DRMS</title>
+        <meta content='width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no' name='viewport'>
+        <link href="http://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css" rel="stylesheet" type="text/css" />
+        <link href="http://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.1.0/css/font-awesome.min.css" rel="stylesheet" type="text/css" />
+        <link href="http://code.ionicframework.com/ionicons/1.5.2/css/ionicons.min.css" rel="stylesheet" type="text/css" />
+        <link href="${pageContext.request.contextPath}/resources/css/dataTables.bootstrap.css" rel="stylesheet" type="text/css" />
+        <link href="${pageContext.request.contextPath}/resources/css/app.css" rel="stylesheet" type="text/css" />
+        <link href="${pageContext.request.contextPath}/resources/css/nv.d3.min.css" rel="stylesheet" type="text/css" />
+    </head>
+    <body class="skin-blue bg">
+        <%@include file="header.jsp" %>
+        <div class="wrapper row-offcanvas row-offcanvas-left">
+           <%@include file="sidemenu.jsp" %>
+            <aside class="right-side">                
+                <section class="content-header">
+                    
+                    <ol class="breadcrumb">
+                        <li><a href="#"><i class="fa fa-home"></i> > Home</a></li>
+                        <li class="active">Dashboard</li>
+                    </ol>
+                </section>
+
+                <section class="content">
+					<div class="row">
+                    		
+                            <style>
+
+							#chart svg {
+							  height: 400px;
+							}
+							
+							</style>
+							
+							
+							<div class="dashboardMapsec col-md-7">
+                            	<div class="box box-solid box-info">
+                                	<div class="box-header">
+                                    	<h3 class="box-title box-title-icon grData">Graphical representation of data</h3>
+                                    </div>
+                                    <div class="box-body chart-responsive">
+                                  	<div id="chart"><svg></svg></div>
+                                </div>
+                                </div>
+                            </div>
+                            
+                    </div>
+                    
+                </section><!-- /.content -->
+            </aside><!-- /.right-side -->
+        </div>
+        
+
+        <script src="http://ajax.googleapis.com/ajax/libs/jquery/2.0.2/jquery.min.js"></script>
+        <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js" type="text/javascript"></script>
+        <script src="http://cdnjs.cloudflare.com/ajax/libs/raphael/2.1.0/raphael-min.js"></script>
+        <script src="${pageContext.request.contextPath}/resources/js/jquery.knob.js" type="text/javascript"></script>
+        <script src="${pageContext.request.contextPath}/resources/js/morris.min.js" type="text/javascript"></script>
+		<script src="${pageContext.request.contextPath}/resources/js/jquery-jvectormap-1.2.2.min.js" type="text/javascript"></script>
+        <script src="${pageContext.request.contextPath}/resources/js/jquery-jvectormap-world-mill-en.js" type="text/javascript"></script>
+        <script src="${pageContext.request.contextPath}/resources/js/jquery.dataTables.js" type="text/javascript"></script>
+        <script src="${pageContext.request.contextPath}/resources/js/dataTables.bootstrap.js" type="text/javascript"></script>
+        <script src="${pageContext.request.contextPath}/resources/js/app.js" type="text/javascript"></script>
+        
+        <script src="http://nvd3.org/assets/lib/d3.v3.js" ></script>
+        <script src="${pageContext.request.contextPath}/resources/js/nv.d3.min.js" type="text/javascript"></script>
+        
+        <script>
+
+   
+
+        jsonString = "";
+	        <c:if test="${not empty ReportList}">	
+	        		i = 0;	 
+	        		space = "";		
+					<c:forEach var="listValue" items="${ReportList}">
+						if(jsonString != "")
+						{
+							jsonString = jsonString + ',';
+						}
+						mkrDateTime = '${listValue.mkrDate}';
+						mkrTime = mkrDateTime.split(' ')[1].substring(0,2);
+						
+						if( (i % 2) != 0)
+						{
+							space = space + " ";
+							mkrTime = space;
+						}
+						
+						jsonString = jsonString + '{' + 
+									'"label" : "' + mkrTime + '", ' + 
+									'"value" : ' + ${listValue.totalCharge} + ', ' + 
+									'"color" : "#585858" ' + 
+									' }';
+
+						jsonString = jsonString + ',' + '{' + 
+									'"label" : "' + mkrTime + '", ' + 
+									'"value" : ' + ${-1 * listValue.totalDischarge} + ', ' + 
+									'"color" : "#d10b48" ' + 
+									' }'; 
+				                
+				        i = i + 1;
+					</c:forEach>		 
+			
+				finalJSON = ' [ {' +
+				           '"key": "Cumulative Return",' +
+				           '"values": [' +jsonString + ']}]';
+		    //       alert(finalJSON);
+		      //     alert(JSON.parse(finalJSON));
+				nv.addGraph(function() {
+					  var chart = nv.models.discreteBarChart()
+					    .x(function(d) { return d.label })
+					    .y(function(d) { return d.value })
+					    .staggerLabels(true)
+					    .tooltips(true)
+					    .showValues(false);
+
+					  chart.xAxis.axisLabel('Hours');
+					  chart.yAxis.axisLabel('Kilo Watt').axisLabelDistance(25);
+					  
+					 
+
+					
+					  /*$('rect.discreteBar').attr('transform', 'translate(17)').attr('width', 20);
+					  $(.nv-axis g text').attr('transform', 'translate(0, 5)') ; */
+
+						data = JSON.parse(finalJSON);
+						
+						
+					  d3.select('#chart svg')
+					    .datum(data)
+					    .transition().duration(500)
+					    .call(chart);
+	
+					  nv.utils.windowResize(chart.update);
+	
+					  return chart;
+					});
+			</c:if>	
+        
+        </script>
+        
+        
+        <style>
+        	.dashboardMapsec, #chart svg {
+			    width: 100%;
+			}
+        </style>
+
+    </body>
+</html>

@@ -1,0 +1,50 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+                                   "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+ <class catalog="drms" name="com.panasonic.drms.accounts.model.UserAccount" table="user">
+  <id name="userID" type="string">
+   <column length="20" name="USER_ID"/>
+   <generator class="native"/>
+  </id>
+  <!-- <property generated="never" lazy="false" name="userID" type="string">
+   <column length="10" name="USER_ID" not-null="true"/>
+  </property>-->
+  <property generated="never" lazy="false" name="userName" type="string">
+   <column length="20" name="USERNAME" not-null="true"/>
+  </property>
+  <property generated="never" lazy="false" name="firstName" type="string">
+   <column length="20" name="FIRST_NAME" not-null="true"/>
+  </property>  
+  <property generated="never" lazy="false" name="lastName" type="string">
+   <column length="20" name="LAST_NAME" not-null="true"/>
+  </property>
+  <property generated="never" lazy="false" name="emailId" type="string">
+   <column length="50" name="EMAIL_ID" not-null="true"/>
+  </property>  
+    <property generated="never" lazy="false" name="phoneNumber" type="string">
+   <column length="15" name="PHONE_NO" not-null="true"/>
+  </property>  
+   <property generated="never" lazy="false" name="address" type="string">
+   <column length="100" name="ADDRESS" />
+  </property>   
+   <property generated="never" lazy="false" name="city" type="string">
+   <column length="30" name="CITY" />
+  </property> 
+  <property generated="never" lazy="false" name="province" type="string">
+   <column length="30" name="PROVINCE" />
+  </property>   
+  <property generated="never" lazy="false" name="country" type="string">
+   <column length="30" name="COUNTRY" />
+  </property>  
+  <property generated="never" lazy="false" name="pinCode" type="string">
+   <column length="10" name="PINCODE" />
+  </property>    
+  <property generated="never" lazy="false" name="accountStatus" type="string">
+   <column length="200" name="AC_STATUS" not-null="true"/>
+  </property>   
+  <property generated="never" lazy="false" name="password" type="string">
+   <column length="200" name="PASSWORD" not-null="true"/>
+  </property> 
+ </class>
+</hibernate-mapping>

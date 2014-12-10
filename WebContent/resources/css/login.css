@@ -1,0 +1,99 @@
+body {
+    margin-top: 50px;
+}
+
+.image-bg-fluid-height,
+.image-bg-fixed-height {
+    text-align: center;
+    -webkit-background-size: cover;
+    -moz-background-size: cover;
+    background-size: cover;
+    -o-background-size: cover;
+}
+
+.image-bg-fluid-height {
+	background: url('../imgs/loginBG.png') no-repeat center center scroll;
+    padding: 100px 0;
+}
+
+.image-bg-fixed-height {
+	background: url('../imgs/loginBG.png') no-repeat center center scroll;
+    height: 100%;
+}
+
+.img-center {
+	margin: 0 auto;
+}
+
+section {
+    padding: 75px 0;
+}
+
+.section-heading {
+    margin: 30px 0;
+    font-size: 4em;
+}
+
+.section-lead {
+    margin: 30px 0;
+}
+
+.section-paragraph {
+    margin: 30px 0;
+}
+
+footer {
+    margin: 10px 0 0 0;
+	position:fixed; 
+	bottom:0;
+	width:100%;
+	background:#76889f;
+}
+footer p{ padding-bottom:0; padding-top:10px; font-weight:300; color:#fff; font-size:12px;}
+footer p a{color:#fff; font-size:12px; font-weight:300;}
+footer p a:hover{color:#fff; text-decoration:underline;}
+.loginbg{ padding:25px; background-color:#acb5c9; width:360px; margin:6% auto; border-radius:5px; color:#fff;}
+.navbar-brand{ height:auto;}
+#header{ background:#fff url(../imgs/loginHeader.png) top left no-repeat;}
+.navbar-inverse .navbar-nav>li>a{ color:#fff; padding-top:25px; font-weight:200;}
+.navbar-inverse{ border-bottom:1px solid #4a5b85}
+.loginbg button, .loginbg button:hover{ background:#ef5936; border:none;}
+.loginbg p{ font-size:16px; margin-top:15px; margin-bottom:10px;}
+.form-control{ background-color:#929aaf; color:#fff; height:40px; border:none;}
+.input-group-addon{ color:#aeb6c2; background-color:#627189; border:1px solid #627189; border-top-left-radius: 4px !important; border-bottom-left-radius: 4px !important;}
+.loginbg .glyphicon{top:0;}
+#email::-webkit-input-placeholder,
+#password::-webkit-input-placeholder
+{
+  color:    #666;
+}
+
+#email:-moz-placeholder,
+#password:-moz-placeholder 
+{
+  color:    #666;
+}
+
+#email::-moz-placeholder,
+#password::-moz-placeholder 
+{
+  color:    #666;
+}
+
+#email:-ms-input-placeholder,
+#password:-ms-input-placeholder 
+{
+  color:    #666;
+}
+.form-horizontal .form-group{ margin-left:0; margin-right:0;}
+
+@media(max-width:768px) {
+    section {
+        padding-top: 25px;
+        padding-bottom: 25px;
+    }
+
+    .section-heading {
+        font-size: 2em;
+    }
+}

@@ -1,0 +1,53 @@
+/*
+$(document).ready(function() {
+	$('#userform').submit(
+		function(event) {
+			var firstname = $('#firstName').val();
+			var lastName = $('#lastName').val();
+			var userName = $('#userName').val();
+			var emailId = $('#emailId').val();
+			var phoneNumber = $('#phoneNumber').val();
+			var password = $('#password').val();
+			var acStatus = $('#acStatus').val();
+
+			var data = 'userName='
+					+ encodeURIComponent(userName)
+					+ '&amp;firstName='
+					+ encodeURIComponent(firstName);
+					+ '&amp;lastName='
+					+ encodeURIComponent(lastName);
+					+ '&amp;emailId='
+					+ encodeURIComponent(emailId);
+					+ '&amp;phoneNumber='
+					+ encodeURIComponent(phoneNumber);
+					+ '&amp;password='
+					+ encodeURIComponent(password);
+					+ '&amp;acStatus='
+					+ encodeURIComponent(acStatus);
+
+	function createAccount() {
+		var firstName = $('#firstName').val();
+		var lastName = $('#lastName').val();
+		var userName = $('#userName').val();
+		var emailId = $('#emailId').val();
+		var phoneNumber = $('#phoneNumber').val();
+		var password = $('#password').val();
+		var acStatus = $('#acStatus').val();
+
+		var data = 'userName='
+				+ encodeURIComponent(userName)
+				+ '&firstName='
+				+ encodeURIComponent(firstName)
+				+ '&lastName='
+				+ encodeURIComponent(lastName)
+				+ '&emailId='
+				+ encodeURIComponent(emailId)
+				+ '&phoneNumber='
+				+ encodeURIComponent(phoneNumber)
+				+ '&password='
+				+ encodeURIComponent(password)
+				+ '&acStatus='
+				+ encodeURIComponent(acStatus);
+				//alert(data);
+		//var formData = new FormData($("#userform"));
+	*/
